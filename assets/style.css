@@ -236,3 +236,9 @@ textarea{min-height:140px;resize:vertical}
 .hero h1{font-size:clamp(2.1rem,4.3vw,3.15rem)}
 .price-note{margin:1.4rem auto 0;max-width:40rem}
 .brand svg.lockup{width:auto;height:38px}
+.form-status{margin-top:12px;font-size:.95rem}
+.form-status:empty{display:none}
+.form-status.ok{background:#E8EFF8;border:1px solid #1D4E89;color:#0F1B2D;border-radius:10px;padding:14px 16px}
+.form-status.err{background:#FDF0EA;border:1px solid #C9480F;color:#0F1B2D;border-radius:10px;padding:14px 16px}
+.form-status a{font-weight:600}
+#enquiry button[disabled]{opacity:.7;cursor:wait}

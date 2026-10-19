@@ -43,7 +43,10 @@
 <main id="main">
 <section class="page-head"><div class="wrap"><span class="eyebrow">Order</span><h1>Get your free draft</h1><p class="lead">Tell us about your business and we'll design a free 3-page draft of your site and email you the link. Like it? Pick a package and pay online. Not for you? You owe nothing.</p><span class="no-calls">No sales calls, everything by email</span></div></section>
 <section><div class="wrap contact-grid">
- <form class="card" id="enquiry" action="mailto:raf@rafwebstudio.com.au" method="post" enctype="text/plain">
+ <form class="card" id="enquiry" action="https://api.web3forms.com/submit" method="post" novalidate>
+  <input type="hidden" name="access_key" value="6be1e1eb-f7a3-4f51-ad65-11d8dad77a6d">
+  <input type="hidden" name="from_name" value="Raf Web Studio website">
+  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
   <label for="f-pkg">Package</label>
   <select id="f-pkg" name="package" required>
    <option>Free 3-page preview (no obligation)</option><option>Launch offer: 5-page site with online bookings ($990)</option><option>One-page site ($490)</option><option>Site with online bookings ($1,790)</option>
@@ -56,8 +59,9 @@
   <div><label for="f-site">Current website (if any)</label><input id="f-site" name="website" placeholder="www.example.com.au"></div></div>
   <label for="f-services">Your services</label><textarea id="f-services" name="services" required placeholder="What you offer, and any prices you're happy to show..."></textarea>
   <label for="f-msg">Anything you want included?</label><textarea id="f-msg" name="message" placeholder="Opening hours, booking system, photos you'll send, colours, pages you'd like..."></textarea>
-  <button class="btn" type="submit">Send my order</button>
-  <p class="form-note">This opens your email app with your order ready to send to raf@rafwebstudio.com.au. Sending it doesn't commit you to anything: we reply by email with your free draft link before you pay anything. We only use your details for your website. See our <a href="privacy.html">privacy policy</a>.</p>
+  <button class="btn" type="submit" id="f-send">Send my order</button>
+  <div id="f-status" class="form-status" role="status" aria-live="polite"></div>
+  <p class="form-note">Your order comes straight to our inbox at raf@rafwebstudio.com.au. Sending it doesn't commit you to anything: we reply by email with your free draft link before you pay anything. We only use your details for your website. See our <a href="privacy.html">privacy policy</a>.</p>
  </form>
  <div>
   <div class="card">
@@ -79,10 +83,30 @@
 (function(){
  var f=document.getElementById('enquiry'),s=document.getElementById('f-pkg'),p=new URLSearchParams(location.search).get('package'),m={"Free preview": 0, "Launch offer ($990)": 1, "Launch offer": 1, "5-page site": 1, "One-page site": 2, "Site with online bookings": 3};
  if(p!==null&&m[p]!==undefined)s.selectedIndex=m[p];
+ var btn=document.getElementById('f-send'),st=document.getElementById('f-status'),label=btn.textContent;
+ function g(d,k){return (d.get(k)||'').toString().trim();}
+ function say(html,cls){st.className='form-status '+cls;st.innerHTML=html;}
  f.addEventListener('submit',function(e){
-  e.preventDefault();var d=new FormData(f),g=function(k){return (d.get(k)||'').toString().trim();};
-  var body='Package: '+g('package')+'\nName: '+g('name')+'\nBusiness: '+g('business')+'\nEmail: '+g('email')+'\nPhone: '+g('phone')+'\nSuburb: '+g('suburb')+'\nCurrent website: '+(g('website')||'none')+'\n\nServices:\n'+g('services')+'\n\nAnything to include:\n'+g('message');
-  location.href='mailto:raf@rafwebstudio.com.au?subject='+encodeURIComponent('Website order - '+g('package')+' - '+g('business'))+'&body='+encodeURIComponent(body);
+  e.preventDefault();
+  if(!f.checkValidity()){f.reportValidity();return;}
+  var d=new FormData(f),free=s.selectedIndex===0,biz=g(d,'business');
+  var subject=free?('Free draft request: '+biz):('New order: '+g(d,'package')+' from '+biz);
+  d.set('subject',subject);d.set('replyto',g(d,'email'));
+  var body='Package: '+g(d,'package')+'\nName: '+g(d,'name')+'\nBusiness: '+biz+'\nEmail: '+g(d,'email')+'\nPhone: '+g(d,'phone')+'\nSuburb: '+g(d,'suburb')+'\nCurrent website: '+(g(d,'website')||'none')+'\n\nServices:\n'+g(d,'services')+'\n\nAnything to include:\n'+g(d,'message');
+  var mail='mailto:raf@rafwebstudio.com.au?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  btn.disabled=true;btn.textContent='Sending...';f.setAttribute('aria-busy','true');say('Sending your details...','');
+  var ctl=window.AbortController?new AbortController():null,t=setTimeout(function(){if(ctl)ctl.abort();},20000);
+  fetch(f.action,{method:'POST',body:d,headers:{'Accept':'application/json'},signal:ctl?ctl.signal:undefined})
+   .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||!j.success)throw new Error(j.message||('HTTP '+r.status));return j;});})
+   .then(function(){
+    clearTimeout(t);f.reset();
+    [].forEach.call(f.children,function(el){if(el!==st)el.style.display='none';});
+    say('<strong>Thanks! We&rsquo;ve got your details and will email you within one business day.</strong>','ok');st.setAttribute('tabindex','-1');st.focus();
+   })
+   .catch(function(){
+    clearTimeout(t);btn.disabled=false;btn.textContent=label;f.removeAttribute('aria-busy');
+    say('Sorry, your details didn&rsquo;t send. Nothing is lost: <a href="'+mail.replace(/"/g,'&quot;')+'">email them to us instead</a> (it opens your email app with everything filled in), or write to <a href="mailto:raf@rafwebstudio.com.au">raf@rafwebstudio.com.au</a>.','err');
+   });
  });
 })();
 </script>
