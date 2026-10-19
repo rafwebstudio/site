@@ -242,3 +242,16 @@ textarea{min-height:140px;resize:vertical}
 .form-status.err{background:#FDF0EA;border:1px solid #C9480F;color:#0F1B2D;border-radius:10px;padding:14px 16px}
 .form-status a{font-weight:600}
 #enquiry button[disabled]{opacity:.7;cursor:wait}
+/* local trust: Raf intro, made-in-Sydney line */
+.hi-raf{display:flex;align-items:center;gap:14px;margin:4px 0 24px}
+.hi-raf img{width:64px;height:64px;border-radius:50%;object-fit:cover;display:block;box-shadow:0 0 0 3px #fff,0 0 0 4px var(--line),0 6px 16px -8px rgba(26,36,51,.35)}
+.hi-raf p{margin:0;font-size:1.02rem;color:var(--ink);line-height:1.45}
+.made-here{display:flex;align-items:center;gap:10px;margin:22px 0 0;padding:11px 16px;background:#fff;border:1px solid var(--line);border-radius:14px;font-size:.96rem;color:var(--ink);width:fit-content;max-width:100%}
+.made-here .icon{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:#e6eef8;color:var(--green)}
+.made-here .icon svg{width:17px;height:17px}
+.about-photo{display:block;position:relative;z-index:1;margin:0 0 22px}
+.about-photo img{width:160px;height:160px;border-radius:50%;object-fit:cover;display:block;box-shadow:0 0 0 5px rgba(255,255,255,.9),0 14px 30px -14px rgba(0,0,0,.5)}
+.about-intro{font-weight:600;color:var(--ink);font-size:1.08rem}
+@media (max-width:600px){.hi-raf img{width:56px;height:56px}.made-here{font-size:.92rem;align-items:flex-start}.about-photo img{width:132px;height:132px}}
+@media (min-width:901px){.hero{padding-top:56px}.hero .hi-raf{margin-bottom:20px}.hero .ticks{margin-top:20px}.hero .made-here{margin-top:16px}}
+@media (min-width:1100px){.hero .made-here{white-space:nowrap;font-size:.93rem;padding:9px 16px 9px 12px}}
