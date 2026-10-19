@@ -39,12 +39,12 @@
  </div>
 </header>
 <main id="main">
-<section class="page-head"><div class="wrap"><span class="eyebrow">Order</span><h1>Order your website</h1><p class="lead">Pick a package and tell us about your business. We build your site and email you a preview link, usually within a few business days. You only pay once you're happy with it.</p><span class="no-calls">No sales calls, everything by email</span></div></section>
+<section class="page-head"><div class="wrap"><span class="eyebrow">Order</span><h1>Get your free draft</h1><p class="lead">Tell us about your business and we'll design a free 3-page draft of your site and email you the link. Like it? Pick a package. You only pay once you're happy with it.</p><span class="no-calls">No sales calls, everything by email</span></div></section>
 <section><div class="wrap contact-grid">
  <form class="card" id="enquiry" action="mailto:raf@rafwebstudio.com.au" method="post" enctype="text/plain">
   <label for="f-pkg">Package</label>
   <select id="f-pkg" name="package" required>
-   <option>One-page site ($490)</option><option>5-page site ($1,490)</option><option>Site with online bookings ($1,790)</option><option>Launch offer: 5-page site ($990)</option><option>Care plan only</option><option>Not sure yet</option>
+   <option>Free 3-page preview (no obligation)</option><option>One-page site ($490)</option><option>5-page site ($1,490)</option><option>Site with online bookings ($1,790)</option><option>Launch offer: 5-page site ($990)</option><option>Not sure yet</option>
   </select>
   <div class="row"><div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
   <div><label for="f-biz">Business name</label><input id="f-biz" name="business" autocomplete="organization" required></div></div>
@@ -68,14 +68,14 @@
   </div>
   <div class="card" style="margin-top:18px">
    <h3 class="mt0">What happens next</h3>
-   <ol class="mb0"><li>We confirm your order by email.</li><li>We build your site and email you a preview link.</li><li>You request any changes by email.</li><li>You pay the invoice and we put it live.</li></ol>
+   <ol class="mb0"><li>We design your free 3-page draft and email you the link.</li><li>You pick a package and send any changes.</li><li>We finish your site and send the updated link.</li><li>You pay online by card and we put it live.</li></ol>
   </div>
   <p class="fine" style="margin-top:18px">Raf Web Studio is run by Raf Verheyen, ABN 51 838 957 009.</p>
  </div>
 </div></section>
 <script>
 (function(){
- var f=document.getElementById('enquiry'),s=document.getElementById('f-pkg'),p=new URLSearchParams(location.search).get('package'),m={"One-page site": 0, "5-page site": 1, "Site with online bookings": 2, "Launch offer ($990)": 3};
+ var f=document.getElementById('enquiry'),s=document.getElementById('f-pkg'),p=new URLSearchParams(location.search).get('package'),m={"Free preview": 0, "One-page site": 1, "5-page site": 2, "Site with online bookings": 3, "Launch offer ($990)": 4};
  if(p!==null&&m[p]!==undefined)s.selectedIndex=m[p];
  f.addEventListener('submit',function(e){
   e.preventDefault();var d=new FormData(f),g=function(k){return (d.get(k)||'').toString().trim();};
