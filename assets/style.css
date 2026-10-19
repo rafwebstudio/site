@@ -213,3 +213,24 @@ textarea{min-height:140px;resize:vertical}
   .card{padding:24px}
   .price{padding:28px 22px}
 }
+
+/* ===== 2026-10-19: concept links, SEO trio, conversion colour ===== */
+.work .concept-link{display:block;text-decoration:none;border-radius:14px;transition:transform .15s}
+.work .concept-link:hover{transform:translateY(-3px)}
+.work .concept-open{display:block;width:fit-content;margin-top:8px;font-weight:650;font-size:.93rem}
+.trio-wrap{padding:0;margin-top:-44px;position:relative;z-index:2}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.trio-item{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 20px;box-shadow:0 10px 30px rgba(29,42,36,.08)}
+.trio-item .icon{flex:none;margin:0;background:#e5f0e9;color:var(--green)}
+.trio-item h3{margin:0 0 4px;font-size:1.08rem}
+.trio-item p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.5}
+@media (max-width:900px){.trio{grid-template-columns:1fr;gap:12px}.trio-wrap{margin-top:-30px}.trio-item{padding:18px}}
+/* primary call-to-action colour (filled buttons). Ghost buttons stay green. */
+:root{--action:#F26B1D;--action-h:#FF7F33;--action-ink:#1a1209}
+.btn,.nav a.btn,.cta .btn,.launch .btn.clay{background:var(--action);border-color:var(--action);color:var(--action-ink)}
+.btn:hover,.nav a.btn:hover,.cta .btn:hover,.launch .btn.clay:hover{background:var(--action-h);border-color:var(--action-h);color:var(--action-ink)}
+.btn.ghost{background:transparent;border-color:var(--green);color:var(--green)}
+.btn.ghost:hover{background:var(--green);border-color:var(--green);color:#fff}
+.dark .btn.clay{background:var(--clay);border-color:var(--clay);color:#fff}
+.dark .btn.clay:hover{background:#a94f2b;border-color:#a94f2b;color:#fff}
+.hero h1{font-size:clamp(2.1rem,4.3vw,3.15rem)}

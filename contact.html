@@ -44,7 +44,7 @@
  <form class="card" id="enquiry" action="mailto:raf@rafwebstudio.com.au" method="post" enctype="text/plain">
   <label for="f-pkg">Package</label>
   <select id="f-pkg" name="package" required>
-   <option>Free 3-page preview (no obligation)</option><option>One-page site ($490)</option><option>5-page site ($1,490)</option><option>Site with online bookings ($1,790)</option><option>Launch offer: 5-page site ($990)</option><option>Not sure yet</option>
+   <option>Free 3-page preview (no obligation)</option><option>Launch offer: 5-page site with online bookings ($990)</option><option>One-page site ($490)</option><option>Site with online bookings ($1,790)</option>
   </select>
   <div class="row"><div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
   <div><label for="f-biz">Business name</label><input id="f-biz" name="business" autocomplete="organization" required></div></div>
@@ -75,7 +75,7 @@
 </div></section>
 <script>
 (function(){
- var f=document.getElementById('enquiry'),s=document.getElementById('f-pkg'),p=new URLSearchParams(location.search).get('package'),m={"Free preview": 0, "One-page site": 1, "5-page site": 2, "Site with online bookings": 3, "Launch offer ($990)": 4};
+ var f=document.getElementById('enquiry'),s=document.getElementById('f-pkg'),p=new URLSearchParams(location.search).get('package'),m={"Free preview": 0, "Launch offer ($990)": 1, "Launch offer": 1, "5-page site": 1, "One-page site": 2, "Site with online bookings": 3};
  if(p!==null&&m[p]!==undefined)s.selectedIndex=m[p];
  f.addEventListener('submit',function(e){
   e.preventDefault();var d=new FormData(f),g=function(k){return (d.get(k)||'').toString().trim();};
