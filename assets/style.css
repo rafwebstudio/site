@@ -255,3 +255,8 @@ textarea{min-height:140px;resize:vertical}
 @media (max-width:600px){.hi-raf img{width:56px;height:56px}.made-here{font-size:.92rem;align-items:flex-start}.about-photo img{width:132px;height:132px}}
 @media (min-width:901px){.hero{padding-top:56px}.hero .hi-raf{margin-bottom:20px}.hero .ticks{margin-top:20px}.hero .made-here{margin-top:16px}}
 @media (min-width:1100px){.hero .made-here{white-space:nowrap;font-size:.93rem;padding:9px 16px 9px 12px}}
+/* care plan upsell */
+.care-line{display:block;margin:10px 0 4px;padding:10px 12px;background:#eef3fa;border-radius:12px;font-size:.9rem;line-height:1.45;color:var(--ink)}
+.care-line strong{color:var(--green)}
+.care-head{margin:56px auto 26px}.care-head h3{font-family:var(--serif);font-size:1.7rem;margin:0}
+.care .price.feature{border:2px solid var(--green);box-shadow:var(--shadow)}
